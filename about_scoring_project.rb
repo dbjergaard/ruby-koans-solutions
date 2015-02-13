@@ -31,10 +31,27 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+
+  # sort the list of dice
+  dice.sort!
+  # slice the list according to repeated dice
+  
+  # shamelessly stolen from:
+  # https://github.com/hcf/99-problems-in-Ruby/blob/master/99_problems.rb
+  sliced = dice.inject([[]]) do |array, current| 
+    if array[-1][-1] == current or array[-1][-1].nil?
+      array[-1] << current
+    else
+      array << [current]
+    end
+  end
+  puts sliced
+  # determine score from length of sub lists
 end
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
+    score([1,1,1,2,2,2,3,3,3])
     assert_equal 0, score([])
   end
 

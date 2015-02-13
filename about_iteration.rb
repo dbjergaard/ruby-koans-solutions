@@ -135,4 +135,7 @@ class AboutIteration < Neo::Koan
   # the construct where file is bound to its own object doesn't make
   # clear when we are done operating on the file.
 
+  # After SandwichCode: The former construct avoids the "bread" of the
+  # sandwich (opening and closing the file handles) allowing the
+  # programmer to focus on the meat (actually parsing the file)
 end
