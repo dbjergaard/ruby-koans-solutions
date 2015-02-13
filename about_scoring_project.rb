@@ -41,44 +41,25 @@ def pack_dups(input)
     list
   end
 end
-
+def calc_high_value(value,number)
+     result = 0
+     if number >= 3
+       result = 100*value + (number - 3)*10*value
+     else
+       result = value*10*number
+     end
+     result
+end
 def score(dice)
-  # You need to write this method
-  if dice.empty?
-    return 0
-  end
-  # sort the list of dice
-  dice.sort!
-  # slice the list according to repeated dice
-  # puts dice
-  sliced = pack_dups(dice)
   value = 0
-  sliced.each do |group| 
-    if group.size > 3
-      if group[0] == 1
-        value += 1000
-        value += 100*(group.size - 3)
-      else
-        
-      end
-    end
-    if group.size == 3
-      if group[0] == 1
-        value += 1000
-      else
-        value += 100*group[0]
-      end
-    elsif group.size == 2
-      if group[0] == 5
-        value += 100
-      elsif group[0] == 1
-        value += 200
-      end
-    elsif group.size == 1
-      if group[0] == 5
-        value += 50
-      elsif group[0] == 1
-        value += 100
+  pack_dups(dice.sort).each do |group| 
+    if group[0] == 1 
+      value += calc_high_value(10,group.size)
+    elsif group[0] == 5
+      value += calc_high_value(5,group.size)
+    else 
+      if group.size == 3
+        value += group[0]*100
       end
     end
   end
