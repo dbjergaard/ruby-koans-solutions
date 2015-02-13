@@ -100,12 +100,12 @@ class AboutIteration < Neo::Koan
   def test_all_iteration_methods_work_on_any_collection_not_just_arrays
     # Ranges act like a collection
     result = (1..3).map { |item| item + 10 }
-    assert_equal __, result
+    assert_equal [11,12,13], result
 
     # Files act like a collection of lines
     File.open("example_file.txt") do |file|
       upcase_lines = file.map { |line| line.strip.upcase }
-      assert_equal __, upcase_lines
+      assert_equal ["THIS","IS","A","TEST"], upcase_lines
     end
 
     # NOTE: You can create your own collections that work with each,
@@ -124,5 +124,15 @@ class AboutIteration < Neo::Koan
   #   # code to read 'file'
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
+
+  # Answer:
+  # The construct:
+  #   File.open(filename) do |file|
+  #     # code to read 'file'
+  #   end
+  # expresses the fact that within the File.open and the end
+  # statements, the file will be open and operated on.  In contrast,
+  # the construct where file is bound to its own object doesn't make
+  # clear when we are done operating on the file.
 
 end
